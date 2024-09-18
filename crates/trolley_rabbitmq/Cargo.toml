@@ -1,0 +1,11 @@
+[package]
+name = "trolley_rabbitmq"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+trolley_core.workspace = true
+
+lapin.workspace = true
+futures.workspace = true
+typed-builder.workspace = true

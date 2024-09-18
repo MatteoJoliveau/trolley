@@ -1,0 +1,39 @@
+[workspace]
+resolver = "2"
+members = ["crates/*"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+
+[workspace.dependencies]
+# workspace
+trolley_core.path = "crates/trolley_core"
+trolley_rabbitmq.path = "crates/trolley_rabbitmq"
+
+# crates.io
+assert2 = "0.3.15"
+futures = { version = "0.3.30", default-features = false, features = ["std"] }
+lapin = "2.5.0"
+rstest = "0.22.0"
+thiserror = "1"
+tokio = "1"
+tokio-stream = { version = "0.1.16", default-features = false }
+typed-builder = "0.20.0"
+serde = "1"
+serde_json= "1"
+
+[package]
+name = "trolley"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+trolley_core.workspace = true
+
+[dev-dependencies]
+trolley_rabbitmq.workspace = true
+
+tokio = { workspace = true, features = ["macros", "rt-multi-thread", "sync"] }
+serde = { workspace = true, features = ["derive"] }
+serde_json.workspace = true
