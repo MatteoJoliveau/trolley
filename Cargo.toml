@@ -28,12 +28,16 @@ name = "trolley"
 version.workspace = true
 edition.workspace = true
 
+[features]
+default = []
+rabbitmq = ["trolley_rabbitmq"]
+json = ["trolley_core/json"]
+
 [dependencies]
 trolley_core.workspace = true
+trolley_rabbitmq = { workspace = true, optional = true }
 
 [dev-dependencies]
-trolley_rabbitmq.workspace = true
-
 tokio = { workspace = true, features = ["macros", "rt-multi-thread", "sync"] }
 serde = { workspace = true, features = ["derive"] }
 serde_json.workspace = true

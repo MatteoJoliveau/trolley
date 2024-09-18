@@ -3,10 +3,14 @@ name = "trolley_core"
 version.workspace = true
 edition.workspace = true
 
+[features]
+default = []
+json = ["serde_json"]
+
 [dependencies]
 futures.workspace = true
 thiserror.workspace = true
 tokio = { workspace = true, features = ["sync"] }
 tokio-stream = { workspace = true, features = ["sync"] }
 serde.workspace = true
-serde_json = { workspace = true }
+serde_json = { workspace = true, optional = true }

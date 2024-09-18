@@ -8,20 +8,28 @@ pub trait Codec: Default {
         -> Result<M, Self::Error>;
 }
 
-#[derive(Default)]
-pub struct SerdeJsonCodec;
+#[cfg(feature = "json")]
+pub use json::SerdeJsonCodec;
 
-impl Codec for SerdeJsonCodec {
-    type Error = serde_json::Error;
+#[cfg(feature = "json")]
+mod json {
+    use super::Codec;
 
-    fn serialize<M: serde::ser::Serialize>(&self, message: &M) -> Result<Vec<u8>, Self::Error> {
-        serde_json::to_vec(message)
-    }
+    #[derive(Default)]
+    pub struct SerdeJsonCodec;
 
-    fn deserialize<M: serde::de::DeserializeOwned>(
-        &self,
-        payload: &[u8],
-    ) -> Result<M, Self::Error> {
-        serde_json::from_slice(payload)
+    impl Codec for SerdeJsonCodec {
+        type Error = serde_json::Error;
+
+        fn serialize<M: serde::ser::Serialize>(&self, message: &M) -> Result<Vec<u8>, Self::Error> {
+            serde_json::to_vec(message)
+        }
+
+        fn deserialize<M: serde::de::DeserializeOwned>(
+            &self,
+            payload: &[u8],
+        ) -> Result<M, Self::Error> {
+            serde_json::from_slice(payload)
+        }
     }
 }

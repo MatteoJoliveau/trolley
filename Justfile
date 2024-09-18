@@ -5,7 +5,7 @@ test *args:
     cargo nextest run --all-targets {{ args }}
 
 example name:
-    cargo run --example {{ name }}
+    cargo run --example {{ name }} --all-features
 
 fmt:
     cargo fmt

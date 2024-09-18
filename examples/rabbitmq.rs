@@ -1,5 +1,6 @@
-use trolley::{codec::SerdeJsonCodec, DeliveryOutcome, Handler, ServiceConfig};
-use trolley_rabbitmq::RabbitTransport;
+use trolley::{
+    codec::SerdeJsonCodec, rabbitmq::RabbitTransport, DeliveryOutcome, Handler, ServiceConfig,
+};
 
 struct LogMessage;
 
